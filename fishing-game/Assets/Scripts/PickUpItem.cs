@@ -7,9 +7,21 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] float pickupDistance = 1.5f;
     [SerializeField] float ttl = 10f;
 
+    public Item item;
+    public int count;
+
     private void Awake()
     {
         player = GameManager.instance.player.transform;
+    }
+
+    public void Set(Item item, int count)
+    {
+        this.item = item;
+        this.count = count;
+
+        var renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = item.Icon;
     }
 
     private void Update()
