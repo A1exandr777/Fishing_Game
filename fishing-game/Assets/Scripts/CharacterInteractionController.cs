@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterInteractionController : MonoBehaviour
 {
@@ -16,9 +17,14 @@ public class CharacterInteractionController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            UseTool();
+            // UseTool();
+            var waterTile = GameManager.instance.tilemapController.GetTileBase(Input.mousePosition);
+            if (waterTile is not null)
+            {
+                FishingController.instance.StartFishing();
+            }
         }
     }
 

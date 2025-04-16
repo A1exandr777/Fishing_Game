@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b414b2c722ac77e429d5bd75c045390a, type: 3}
-  m_Name: Fish
+  m_Script: {fileID: 11500000, guid: f7ffc2ae625374e468a54e6ce5542719, type: 3}
+  m_Name: Fishable
   m_EditorClassIdentifier: 
-  Name: Sea Bass
-  Stackable: 1
-  Icon: {fileID: 8966945178157639174, guid: a1db1e7b9dd7d294ca7027174848cb0f, type: 3}
+  tiles:
+  - {fileID: 11400000, guid: d448d893d56287c43927fd6622cff8e7, type: 2}
+  fishable: 1

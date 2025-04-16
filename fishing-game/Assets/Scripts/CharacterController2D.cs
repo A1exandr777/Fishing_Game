@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour
@@ -8,6 +9,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float speed = 2f;
     Vector2 motionVector;
     public Vector2 lastMotionVector;
+    public bool anchored = false;
     public bool moving;
     Animator animator;
 
@@ -21,6 +23,12 @@ public class CharacterController2D : MonoBehaviour
     {
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
+
+        if (anchored)
+        {
+            horizontal = 0;
+            vertical = 0;
+        }
 
         motionVector = new Vector2(horizontal, vertical).normalized;
         animator.SetFloat("horizontal", horizontal);
@@ -37,7 +45,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
     }
@@ -45,5 +53,10 @@ public class CharacterController2D : MonoBehaviour
     private void Move()
     {
         rigidbody2d.linearVelocity = motionVector * speed;
+    }
+
+    public void AnchorPlayer(bool state)
+    {
+        anchored = state;
     }
 }
