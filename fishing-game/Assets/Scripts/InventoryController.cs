@@ -6,12 +6,27 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject toolbar;
     [SerializeField] Item item;
 
+    private TabController tabController;
+    private bool open;
+
+    private void Start()
+    {
+        tabController = panel.GetComponent<TabController>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            panel.SetActive(!panel.activeInHierarchy);
-            toolbar.SetActive(!toolbar.activeInHierarchy);
+            open = !open;
+            
+            panel.SetActive(open);
+            toolbar.SetActive(!open);
+
+            if (open)
+                tabController.OpenCurrentTab();
+            else
+                tabController.CloseTabs();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

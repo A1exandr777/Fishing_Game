@@ -21,7 +21,7 @@ public class FishingMinigame : MonoBehaviour
     private float fishPosition = 0.5f;
     private float fishMovementDirection = 1f;
     
-    public void StartMinigame(Item fish)
+    public void StartMinigame(Item fish, float score)
     {
         currentFish = fish;
         minigamePanel.SetActive(true);
@@ -41,14 +41,14 @@ public class FishingMinigame : MonoBehaviour
             
             if (isReeling)
             {
-                catchArea.position += new Vector3(0, 150f * Time.deltaTime);
-                
-                var indPosY = fishIndicator.position.y;
-                var areaPosY = catchArea.position.y;
-                if (indPosY >= areaPosY && indPosY + fishIndicator.rect.size.y <= areaPosY + catchArea.rect.size.y)
-                {
-                    catchProgress += 2 * baseCatchSpeed * Time.deltaTime;
-                }
+                // catchArea.position += new Vector3(0, 150f * Time.deltaTime);
+                catchArea.anchoredPosition = new Vector2(
+                    catchArea.anchoredPosition.x,
+                    Mathf.Clamp(
+                        catchArea.anchoredPosition.y + 150f * Time.deltaTime,
+                        0, minigamePanel.transform.GetComponent<RectTransform>().rect.size.y - catchArea.rect.size.y
+                    )
+                );
                 // var difficultyLevel = 1; // currentFish.difficultyLevel
                 // float catchSpeed = baseCatchSpeed - (difficultyLevel * difficultyMultiplier);
                 // catchProgress += catchSpeed * Time.deltaTime;
@@ -62,16 +62,37 @@ public class FishingMinigame : MonoBehaviour
             }
             else
             {
-                catchArea.position -= new Vector3(0, 300f * Time.deltaTime);
+                // catchArea.position -= new Vector3(0, 300f * Time.deltaTime);
+                catchArea.anchoredPosition = new Vector2(
+                    catchArea.anchoredPosition.x,
+                    Mathf.Clamp(
+                        catchArea.anchoredPosition.y - 300f * Time.deltaTime,
+                        0, minigamePanel.transform.GetComponent<RectTransform>().rect.size.y - catchArea.rect.size.y
+                        )
+                    );
+            }
+            
+            var indPosY = fishIndicator.position.y;
+            var areaPosY = catchArea.position.y;
+            if (indPosY >= areaPosY && indPosY + fishIndicator.rect.size.y <= areaPosY + catchArea.rect.size.y)
+            {
+                catchProgress += 2 * baseCatchSpeed * Time.deltaTime;
+            }
+            else
+            {
                 catchProgress -= Time.deltaTime * 0.2f;
             }
             
             catchProgress = Mathf.Clamp01(catchProgress);
             
-            progressBar.fillAmount = catchProgress;
+            var progressRect = progressBar.rectTransform.rect;
+            progressBar.rectTransform.sizeDelta = new Vector2(
+                progressRect.size.x,
+                catchProgress * minigamePanel.transform.GetComponent<RectTransform>().rect.size.y
+                );
             fishIndicator.anchoredPosition = new Vector2(
                 fishIndicator.anchoredPosition.x,
-                Mathf.Lerp(-150, 150, fishPosition)
+                Mathf.Lerp(0, minigamePanel.transform.GetComponent<RectTransform>().rect.size.y - fishIndicator.rect.size.y, fishPosition)
             );
             
             yield return null;

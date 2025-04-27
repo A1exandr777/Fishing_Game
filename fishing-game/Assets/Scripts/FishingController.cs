@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 public class FishingController : MonoBehaviour
 {
     public static FishingController instance;
-    
+
+    public ThrowMinigame throwMinigame;
     public FishingMinigame minigame;
     public Item fish;
     public bool isFishing;
+    public bool isThrowing;
     
     private void Awake()
     {
@@ -29,16 +31,22 @@ public class FishingController : MonoBehaviour
 
     public void StartFishing()
     {
-        if (isFishing) return;
-        Debug.Log("Started fishing");
-        isFishing = true;
+        if (isFishing || isThrowing) return;
+        isThrowing = true;
         GameManager.instance.characterController.AnchorPlayer(true);
-        minigame.StartMinigame(fish);
+        // throwMinigame.StartMinigame();
+        EndThrow(1f);
+    }
+
+    public void EndThrow(float score)
+    {
+        isThrowing = false;
+        isFishing = true;
+        minigame.StartMinigame(fish, score);
     }
 
     public void EndFishing(bool success)
     {
-        Debug.Log($"Fishing successful: {success}");
         isFishing = false;
         GameManager.instance.characterController.AnchorPlayer(false);
         if (success)
