@@ -12,11 +12,13 @@ public class CharacterController2D : MonoBehaviour
     public bool anchored = false;
     public bool moving;
     Animator animator;
+    public VectorValue startingPosition;
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        transform.position = startingPosition.initialValue;
     }
 
     private void Update()
