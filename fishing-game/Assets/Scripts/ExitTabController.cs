@@ -15,7 +15,8 @@ public class ExitTabController : MonoBehaviour
     
     private void OnMenuClick()
     {
-        SceneManager.LoadScene("Scenes/MainMenu");
+        // SceneManager.LoadScene("Scenes/MainMenu");
+        SceneLoader.Instance.LoadScene("MainMenu");
     }
 
     private void OnExitClick()

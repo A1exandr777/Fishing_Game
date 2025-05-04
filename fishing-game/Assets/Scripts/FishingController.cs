@@ -4,28 +4,28 @@ using UnityEngine.InputSystem;
 
 public class FishingController : MonoBehaviour
 {
-    public static FishingController instance;
-
-    public ThrowMinigame throwMinigame;
-    public FishingMinigame minigame;
+    public UIController uiController;
+    
+    // public ThrowMinigame throwMinigame;
+    // public FishingMinigame fishingMinigame;
     public Item fish;
     public bool isFishing;
     public bool isThrowing;
     
     private void Awake()
     {
-        instance = this;
+        
     }
 
     private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            minigame.StartReeling();
+            uiController.fishingMinigame.StartReeling();
         }
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            minigame.StopReeling();
+            uiController.fishingMinigame.StopReeling();
         }
     }
 
@@ -33,7 +33,7 @@ public class FishingController : MonoBehaviour
     {
         if (isFishing || isThrowing) return;
         isThrowing = true;
-        GameManager.instance.characterController.AnchorPlayer(true);
+        GameManager.Instance.Player.AnchorPlayer(true);
         // throwMinigame.StartMinigame();
         EndThrow(1f);
     }
@@ -42,16 +42,31 @@ public class FishingController : MonoBehaviour
     {
         isThrowing = false;
         isFishing = true;
-        minigame.StartMinigame(fish, score);
+        uiController.fishingMinigame.StartMinigame(fish, score);
     }
 
     public void EndFishing(bool success)
     {
         isFishing = false;
-        GameManager.instance.characterController.AnchorPlayer(false);
+        GameManager.Instance.Player.AnchorPlayer(false);
         if (success)
         {
-            GameManager.instance.inventory.Add(fish, 1);
+            GameManager.Instance.inventory.Add(fish, 1);
         }
     }
+
+    // private void AttachUIController(UIController controller)
+    // {
+    //     uiController = controller;
+    // }
+    //
+    // private void OnEnable()
+    // {
+    //     Events.UILoaded += AttachUIController;
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     Events.UILoaded -= AttachUIController;
+    // }
 }

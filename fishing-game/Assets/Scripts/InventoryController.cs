@@ -31,7 +31,7 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameManager.instance.inventory.Add(item, 2);
+            GameManager.Instance.inventory.Add(item, 1);
         }
     }
 }

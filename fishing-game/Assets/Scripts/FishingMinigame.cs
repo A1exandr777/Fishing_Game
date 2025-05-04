@@ -100,7 +100,7 @@ public class FishingMinigame : MonoBehaviour
         
         var success = catchProgress >= 1f;
         minigamePanel.SetActive(false);
-        FishingController.instance.EndFishing(success);
+        GameManager.Instance.FishingController.EndFishing(success);
     }
     
     private void UpdateFishPosition()

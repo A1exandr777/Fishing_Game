@@ -95,7 +95,7 @@ public class ThrowMinigame : MonoBehaviour
         }
         
         minigamePanel.SetActive(false);
-        FishingController.instance.EndThrow(0.5f);
+        GameManager.Instance.FishingController.EndThrow(0.5f);
     }
     
     void SetNewRandomTarget()
