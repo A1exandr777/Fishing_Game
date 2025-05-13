@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ToolbarController : MonoBehaviour
 {
-    [SerializeField] int toolbarSize = 3;
+    public int toolbarSize = 3;
     private int selectedItem;
 
     public Action<int> onChange;

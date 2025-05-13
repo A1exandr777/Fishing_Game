@@ -10,7 +10,7 @@ public class TabController : MonoBehaviour
 
     private void Start()
     {
-        OpenCurrentTab();
+        // OpenCurrentTab();
         
         for (var i = 0; i < tabButtons.Length; i++)
         {

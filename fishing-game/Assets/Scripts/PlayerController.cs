@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public bool anchored = false;
     public bool moving;
     Animator animator;
+
+    public Dictionary<string, int> caughtFish = new();
+    
     // public VectorValue startingPosition;
 
     void Awake()
@@ -31,6 +35,18 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         // transform.position = startingPosition.initialValue;
+
+        // var data = SaveSystem.LoadGame(1);
+        // if (data != null)
+        // {
+        //     foreach (var item in data.playerInventory.items)
+        //     {
+        //         GameManager.Instance.Inventory.Add(ItemDatabase.GetItem(item.itemID), item.quantity);
+        //     }
+        //     var pos = data.playerPosition;
+        //
+        //     transform.position = new Vector3(pos[0], pos[1], pos[2]);
+        // }
     }
 
     private void Update()

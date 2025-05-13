@@ -21,6 +21,8 @@ public class ExitTabController : MonoBehaviour
 
     private void OnExitClick()
     {
+        SaveSystem.SaveGame(1);
+        
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #endif

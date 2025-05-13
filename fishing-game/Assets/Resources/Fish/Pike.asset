@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b414b2c722ac77e429d5bd75c045390a, type: 3}
-  m_Name: Fish
+  m_Name: Pike
   m_EditorClassIdentifier: 
-  Name: Sea Bass
+  Name: "\u0429\u0443\u043A\u0430"
   Stackable: 1
-  Icon: {fileID: 8966945178157639174, guid: a1db1e7b9dd7d294ca7027174848cb0f, type: 3}
+  Icon: {fileID: -7821901494928864866, guid: 9ec6c03cdce7fd94aae9a9e8b12dcca7, type: 3}

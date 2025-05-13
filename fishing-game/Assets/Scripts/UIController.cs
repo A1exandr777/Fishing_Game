@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     
     public ThrowMinigame throwMinigame;
     public FishingMinigame fishingMinigame;
+    public InventoryPanel inventoryPanel;
+    public ToolbarPanel toolbarPanel;
     public GameObject gameCanvas;
     public GameObject menuCanvas;
     public Image fade;
@@ -26,6 +28,13 @@ public class UIController : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
+
+    // public void Init()
+    // {
+    //     inventoryPanel.Init();
+    //     toolbarPanel.Init();
+    //     toolbarPanel.ToolbarInit();
+    // }
 
     public void SwitchUI(string newUI)
     {

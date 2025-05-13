@@ -8,9 +8,10 @@ public class FishingController : MonoBehaviour
     
     // public ThrowMinigame throwMinigame;
     // public FishingMinigame fishingMinigame;
-    public Item fish;
     public bool isFishing;
     public bool isThrowing;
+
+    private Item fish;
     
     private void Awake()
     {
@@ -42,6 +43,9 @@ public class FishingController : MonoBehaviour
     {
         isThrowing = false;
         isFishing = true;
+
+        fish = ItemDatabase.GetRandomFish();
+        
         uiController.fishingMinigame.StartMinigame(fish, score);
     }
 
@@ -51,7 +55,7 @@ public class FishingController : MonoBehaviour
         GameManager.Instance.Player.AnchorPlayer(false);
         if (success)
         {
-            GameManager.Instance.inventory.Add(fish, 1);
+            GameManager.Instance.Inventory.Add(fish, 1);
         }
     }
 

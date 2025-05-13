@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,9 +7,16 @@ public class ToolbarPanel : ItemPanel
     [SerializeField] private ToolbarController toolbar;
     private int current;
 
-    private void Start()
+    private void Awake()
+    {
+        Events.InventoryLoaded += ToolbarInit;
+    }
+
+    public void ToolbarInit()
     {
         Init();
+        
+        Show();
         toolbar.onChange += Highlight;
         Highlight(0);
     }

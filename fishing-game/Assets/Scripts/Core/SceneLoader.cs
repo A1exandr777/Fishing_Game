@@ -25,7 +25,7 @@ public class SceneLoader : MonoBehaviour
         DontDestroyOnLoad(this);
     }
     
-    public void LoadScene(string sceneName, Vector2? position = null)
+    public void LoadScene(string sceneName, Vector2? position = null, bool fadeIn = true)
     {
         // GameManager.Instance.playerPositionBeforeSceneChange = GameManager.Instance.Player.transform.position;
         sceneToLoad = sceneName;
@@ -33,18 +33,22 @@ public class SceneLoader : MonoBehaviour
         // SceneManager.LoadScene(sceneToLoad);
         // GameManager.Instance.Player.transform.position = position;
         // Events.SceneLoaded.Invoke();
-        StartCoroutine(FadeAndLoadScene());
+        StartCoroutine(FadeAndLoadScene(fadeIn));
     }
     
-    private IEnumerator FadeAndLoadScene()
+    private IEnumerator FadeAndLoadScene(bool fadeIn)
     {
-        // Fade out
         var timer = 0f;
-        while (timer < fadeDuration)
+        
+        // Fade in
+        if (fadeIn)
         {
-            SetAlpha(Mathf.Lerp(0f, 1f, timer / fadeDuration));
-            timer += Time.deltaTime;
-            yield return null;
+            while (timer < fadeDuration)
+            {
+                SetAlpha(Mathf.Lerp(0f, 1f, timer / fadeDuration));
+                timer += Time.deltaTime;
+                yield return null;
+            }
         }
         SetAlpha(1f);
 
@@ -64,7 +68,7 @@ public class SceneLoader : MonoBehaviour
         // After scene loads
         SceneLoaded();
         
-        // Fade in
+        // Fade out
         timer = 0f;
         while (timer < fadeDuration)
         {
@@ -78,7 +82,7 @@ public class SceneLoader : MonoBehaviour
     private void SceneLoaded()
     {
         // GameManager.Instance.currentScene = sceneToLoad;
-        GameManager.Instance.Player.transform.position = positionToLoad ?? Vector2.zero;
+        // GameManager.Instance.Player.transform.position = positionToLoad ?? Vector2.zero;
     }
 
     private void SetAlpha(float alpha)

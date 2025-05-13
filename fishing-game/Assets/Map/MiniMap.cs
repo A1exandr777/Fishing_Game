@@ -25,7 +25,7 @@ public class MiniMap : MonoBehaviour
             mapOpen=false; //устанавливаем, что карта отключена
         }
 
-       MapPosition(); //функция слежения камеры за игроком
+        MapPosition(); //функция слежения камеры за игроком
     }
 
     void MapPosition(){

@@ -5,44 +5,57 @@ using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
 {
-    public ItemContainer inventory;
+    // public ItemContainer inventory;
+    public GameObject panel;
     public List<InventorySlot> slots;
+    public GameObject slotPrefab;
+    public int slotCount = 20;
 
-    private void Start()
-    {
-        Init();
-    }
+    // private void Awake()
+    // {
+    //     Events.InventoryLoaded += Init;
+    // }
 
     public void Init()
     {
-        SetIndex();
-        Show();
-    }
-
-    private void OnEnable()
-    {
-        Show();
-    }
-
-    private void SetIndex()
-    {
-        for (var i = 0; i < inventory.slots.Count && i < slots.Count; i++)
+        for (var i = 0; i < slotCount; i++)
         {
-            slots[i].setIndex(i);
+            var slotObject = Instantiate(slotPrefab, panel.transform);
+            var slot = slotObject.GetComponent<InventorySlot>();
+            slot.setIndex(i);
+            slots.Add(slot);
+            
         }
+        
+        // SetIndex();
+        Show();
+        Events.ItemAdded += Show;
     }
+
+    // private void OnEnable()
+    // {
+    //     Show();
+    // }
+
+    // private void SetIndex()
+    // {
+    //     for (var i = 0; i < GameManager.Instance.Inventory.slots.Count && i < slots.Count; i++)
+    //     {
+    //         slots[i].setIndex(i);
+    //     }
+    // }
 
     public void Show()
     {
-        for (var i = 0; i < inventory.slots.Count && i < slots.Count; i++)
+        for (var i = 0; i < GameManager.Instance.Inventory.slots.Count && i < slots.Count; i++)
         {
-            if (inventory.slots[i].item is null)
+            if (GameManager.Instance.Inventory.slots[i].item is null)
             {
                 slots[i].Clean();
             }
             else
             {
-                slots[i].Set(inventory.slots[i]);
+                slots[i].Set(GameManager.Instance.Inventory.slots[i]);
             }
         }
     }

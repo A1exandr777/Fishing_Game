@@ -4,15 +4,17 @@ public class InventoryController : MonoBehaviour
 {
     [SerializeField] GameObject panel;
     [SerializeField] GameObject toolbar;
-    [SerializeField] Item item;
+    [SerializeField] Item[] items;
 
-    private TabController tabController;
+    public Cutscene cutscene;
+
+    public TabController tabController;
     private bool open;
 
-    private void Start()
-    {
-        tabController = panel.GetComponent<TabController>();
-    }
+    // private void Start()
+    // {
+    //     tabController = panel.GetComponent<TabController>();
+    // }
 
     private void Update()
     {
@@ -31,7 +33,12 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameManager.Instance.inventory.Add(item, 1);
+            foreach (var item in items)
+            {
+                GameManager.Instance.Inventory.Add(item, 1);
+            }
+            
+            // GameManager.Instance.CutsceneController.PlayCutscene(cutscene);
         }
     }
 }

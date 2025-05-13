@@ -4,6 +4,10 @@ using UnityEngine.Events;
 public static class Events
 {
     public static UnityAction SceneLoaded;
+
+    public static UnityAction ItemAdded;
+
+    public static UnityAction InventoryLoaded;
     
     public static UnityAction<GameObject> PlayerSpawned;
 

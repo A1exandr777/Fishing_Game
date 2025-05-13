@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] Image icon;
-    [SerializeField] TextMeshProUGUI text;
-    [SerializeField] Image highlight;
+    [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Image highlight;
 
-    int index;
+    private int index;
 
     public void setIndex(int i)
     {
@@ -42,7 +42,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var itemPanel = transform.parent.GetComponent<ItemPanel>();
+        var itemPanel = transform.parent.parent.parent.GetComponent<ItemPanel>();
         itemPanel.OnClick(index);
         // var inventory = GameManager.instance.inventory;
         // GameManager.instance.dragController.OnClick(inventory.slots[index]);

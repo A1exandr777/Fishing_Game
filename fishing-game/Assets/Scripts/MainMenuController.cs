@@ -16,11 +16,14 @@ public class MainMenuController : MonoBehaviour
     public void OnStartClick()
     {
         // SceneManager.LoadScene("Scenes/Game");
-        SceneLoader.Instance.LoadScene("Game");
+        // SceneLoader.Instance.LoadScene("Game");
+        GameManager.Instance.StartGame();
     }
 
     public void OnExitClick()
     {
+        SaveSystem.SaveGame(1);
+        
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif

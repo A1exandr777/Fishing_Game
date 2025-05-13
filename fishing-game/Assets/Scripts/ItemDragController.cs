@@ -40,6 +40,8 @@ public class ItemDragController : MonoBehaviour
             slot.Set(item, count);
         }
         UpdateIcon();
+        
+        Events.ItemAdded.Invoke();
     }
 
     private void UpdateIcon()

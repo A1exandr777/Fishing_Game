@@ -1,12 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public Cutscene startCutscene;
     
     // public GameObject player;
     // public CharacterController2D characterController;
-    public ItemContainer inventory;
+    // public ItemContainer inventory;
     public ItemDragController dragController;
     public TilemapController tilemapController;
     
@@ -17,7 +20,8 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public FishingController FishingController;
     public UIController UIController;
-    // public PlayerInventory inventory;
+    public CutsceneController CutsceneController;
+    public PlayerInventory Inventory;
     
     [Header("Scene Management")]
     public string currentScene;
@@ -33,6 +37,43 @@ public class GameManager : MonoBehaviour
         
         Instance = this;
         DontDestroyOnLoad(this);
+
+        // UIController.Init();
+        SceneLoader.Instance.LoadScene("MainMenu", fadeIn: false);
+    }
+
+    public void StartGame()
+    {
+        if (SaveSystem.SaveExists(1))
+        {
+            LoadPlayerData();
+            SceneLoader.Instance.LoadScene("Game");
+        }
+        else
+        {
+            SceneLoader.Instance.LoadScene("Game", fadeIn: false);
+            
+            // CutsceneController.PlayCutscene(
+            //     startCutscene,
+            //     fadeOut: false,
+            //     callback: () => { SceneLoader.Instance.LoadScene("Game", fadeIn: false); });
+        }
+    }
+
+    private void LoadPlayerData()
+    {
+        var data = SaveSystem.LoadGame(1);
+        if (data != null)
+        {
+            foreach (var item in data.playerInventory.items)
+            {
+                Inventory.Add(ItemDatabase.GetItem(item.itemID), item.quantity);
+            }
+            
+            var pos = data.playerPosition;
+            
+            Player.SetPosition(new Vector3(pos[0], pos[1], pos[2]));
+        }
     }
     
     public void TogglePause(bool pause)
