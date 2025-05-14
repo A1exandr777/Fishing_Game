@@ -75,9 +75,12 @@ public class SaveData
         playerPosition[2] = GameManager.Instance.Player.transform.position.z;
 
         caughtFish = GameManager.Instance.Player.caughtFish;
+
+        playerHealth = GameManager.Instance.Player.health;
+        playerMoney = GameManager.Instance.Player.money;
         
         // Save inventory
-        playerInventory = new InventoryData(GameManager.Instance.Inventory);
+        playerInventory = new InventoryData(GameManager.Instance.Player.Inventory);
         
         // Save world state (you'll need to implement TilemapData)
         // modifiedTilemaps = TilemapManager.Instance.GetTilemapData();

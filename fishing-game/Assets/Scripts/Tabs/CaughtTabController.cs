@@ -47,7 +47,7 @@ public class CaughtTabController : MonoBehaviour
 
     private void UpdateCaught()
     {
-        pageNumber.text = currentPage.ToString();
+        pageNumber.text = $"{currentPage}/{maxPage}";
         
         var caughtFish = GameManager.Instance.Player.caughtFish;
 
@@ -64,15 +64,9 @@ public class CaughtTabController : MonoBehaviour
 
             var icon = fishIcons[i];
             var image = icon.GetComponent<Image>();
+            icon.GetComponent<TooltipTrigger>().content = hasCaught ? allFish[i].Name : "???";
             icon.SetActive(true);
-            if (!hasCaught)
-            {
-                image.color = new Color(0f, 0f, 0f, 0.5f);
-            }
-            else
-            {
-                image.color = Color.white;
-            }
+            image.color = hasCaught ? Color.white : new Color(0f, 0f, 0f, 0.5f);
         }
     }
 

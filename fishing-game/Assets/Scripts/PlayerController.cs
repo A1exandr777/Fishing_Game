@@ -1,22 +1,28 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
+
+    public PlayerInventory Inventory;
+
+    public Rigidbody2D rigidbody;
+    public Animator animator;
+    public float speed = 2f;
     
-    Rigidbody2D rigidbody2d;
-    [SerializeField] float speed = 2f;
-    Vector2 motionVector;
+    public Vector2 motionVector;
     public Vector2 lastMotionVector;
     public bool anchored = false;
     public bool moving;
-    Animator animator;
 
     public Dictionary<string, int> caughtFish = new();
+
+    public float health;
+    public int money;
+
+    public Animator fa;
     
     // public VectorValue startingPosition;
 
@@ -32,7 +38,6 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(this);
         
         
-        rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         // transform.position = startingPosition.initialValue;
 
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rigidbody2d.linearVelocity = motionVector * speed;
+        rigidbody.linearVelocity = motionVector * speed;
     }
     
     public void SetPosition(Vector3 position)
@@ -93,5 +98,10 @@ public class PlayerController : MonoBehaviour
     public void AnchorPlayer(bool state)
     {
         anchored = state;
+    }
+
+    public void PlayToolAnimation()
+    {
+        fa.Play("fishing", -1, 0f);
     }
 }

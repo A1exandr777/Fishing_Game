@@ -35,7 +35,7 @@ public class InventoryController : MonoBehaviour
         {
             foreach (var item in items)
             {
-                GameManager.Instance.Inventory.Add(item, 1);
+                GameManager.Instance.Player.Inventory.Add(item, 1);
             }
             
             // GameManager.Instance.CutsceneController.PlayCutscene(cutscene);

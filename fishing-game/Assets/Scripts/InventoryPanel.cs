@@ -11,7 +11,7 @@ public class InventoryPanel : ItemPanel
     
     public override void OnClick(int index)
     {
-        GameManager.Instance.dragController.OnClick(GameManager.Instance.Inventory.slots[index]);
+        GameManager.Instance.dragController.OnClick(GameManager.Instance.Player.Inventory.slots[index]);
         Show();
     }
 }

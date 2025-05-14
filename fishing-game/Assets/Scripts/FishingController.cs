@@ -55,7 +55,7 @@ public class FishingController : MonoBehaviour
         GameManager.Instance.Player.AnchorPlayer(false);
         if (success)
         {
-            GameManager.Instance.Inventory.Add(fish, 1);
+            GameManager.Instance.Player.Inventory.Add(fish, 1);
         }
     }
 

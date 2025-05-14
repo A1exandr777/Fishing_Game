@@ -42,7 +42,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var itemPanel = transform.parent.parent.parent.GetComponent<ItemPanel>();
+        var itemPanel = transform.parent.parent.parent.GetComponent<InventoryTabController>();
         itemPanel.OnClick(index);
         // var inventory = GameManager.instance.inventory;
         // GameManager.instance.dragController.OnClick(inventory.slots[index]);

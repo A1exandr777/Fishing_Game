@@ -47,15 +47,15 @@ public class ItemPanel : MonoBehaviour
 
     public void Show()
     {
-        for (var i = 0; i < GameManager.Instance.Inventory.slots.Count && i < slots.Count; i++)
+        for (var i = 0; i < GameManager.Instance.Player.Inventory.slots.Count && i < slots.Count; i++)
         {
-            if (GameManager.Instance.Inventory.slots[i].item is null)
+            if (GameManager.Instance.Player.Inventory.slots[i].item is null)
             {
                 slots[i].Clean();
             }
             else
             {
-                slots[i].Set(GameManager.Instance.Inventory.slots[i]);
+                slots[i].Set(GameManager.Instance.Player.Inventory.slots[i]);
             }
         }
     }

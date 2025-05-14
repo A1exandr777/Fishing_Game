@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance { get; private set; }
+    public static SceneLoader Instance;
     
     [Header("Settings")]
     public float fadeDuration = 0.5f;

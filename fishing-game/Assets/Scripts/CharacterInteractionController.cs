@@ -21,6 +21,8 @@ public class CharacterInteractionController : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
+            GameManager.Instance.Player.PlayToolAnimation();
+            
             // UseTool();
             var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
             var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");
