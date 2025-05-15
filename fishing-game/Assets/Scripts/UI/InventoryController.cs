@@ -6,10 +6,8 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject toolbar;
     [SerializeField] Item[] items;
 
-    public Cutscene cutscene;
-
     public TabController tabController;
-    private bool open;
+    public bool open;
 
     // private void Start()
     // {

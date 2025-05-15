@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour
 
     public float health;
     public int money;
-
-    public Animator fa;
     
     // public VectorValue startingPosition;
 
@@ -98,10 +96,5 @@ public class PlayerController : MonoBehaviour
     public void AnchorPlayer(bool state)
     {
         anchored = state;
-    }
-
-    public void PlayToolAnimation()
-    {
-        fa.Play("fishing", -1, 0f);
     }
 }

@@ -27,26 +27,27 @@ public class FishingController : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             uiController.fishingMinigame.StopReeling();
+            uiController.throwMinigame.Release();
         }
     }
 
     public void StartFishing()
     {
         if (isFishing || isThrowing) return;
-        isThrowing = true;
+        // isThrowing = true;
         GameManager.Instance.Player.AnchorPlayer(true);
-        // throwMinigame.StartMinigame();
-        EndThrow(1f);
+        uiController.throwMinigame.StartMinigame();
+        // EndThrow(1f);
     }
 
-    public void EndThrow(float score)
+    public void EndThrow(float strength)
     {
-        isThrowing = false;
+        // isThrowing = false;
         isFishing = true;
 
         fish = ItemDatabase.GetRandomFish();
         
-        uiController.fishingMinigame.StartMinigame(fish, score);
+        uiController.fishingMinigame.StartMinigame(fish, strength);
     }
 
     public void EndFishing(bool success)

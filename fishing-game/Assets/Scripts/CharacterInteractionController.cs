@@ -6,22 +6,23 @@ using UnityEngine.Tilemaps;
 
 public class CharacterInteractionController : MonoBehaviour
 {
-    PlayerController character;
-    Rigidbody2D rigidbody2d;
     [SerializeField] float offsetDistance = 1f;
     [SerializeField] float interactionRadius = 1.2f;
+    public FishingRod rod;
 
     private void Awake()
     {
-        character = GetComponent<PlayerController>();
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        
     }
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (GameManager.Instance.UIController.GetComponent<InventoryController>().open)
+            return;
+        
+        if (Mouse.current.leftButton.wasPressedThisFrame && !GameManager.Instance.FishingController.isFishing)
         {
-            GameManager.Instance.Player.PlayToolAnimation();
+            rod.Prepare();
             
             // UseTool();
             var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
@@ -37,6 +38,11 @@ public class CharacterInteractionController : MonoBehaviour
             {
                 GameManager.Instance.FishingController.StartFishing();
             }
+        }
+
+        if (Mouse.current.leftButton.wasReleasedThisFrame && !GameManager.Instance.FishingController.isFishing)
+        {
+            rod.Throw();
         }
     }
 
