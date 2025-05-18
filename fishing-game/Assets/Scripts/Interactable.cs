@@ -6,6 +6,8 @@ public class Interactable : MonoBehaviour
     public Texture2D hoverCursor;
     public Vector2 hotSpot = Vector2.zero;
     public CursorMode cursorMode = CursorMode.Auto;
+
+    public ShopItems shop;
     
     public void OnMouseEnter()
     {
@@ -22,6 +24,6 @@ public class Interactable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        throw new NotImplementedException();
+        GameManager.Instance.ShopController.OpenShop(shop);
     }
 }

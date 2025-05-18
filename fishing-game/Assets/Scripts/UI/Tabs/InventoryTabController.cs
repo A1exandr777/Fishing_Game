@@ -1,20 +1,18 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ItemPanel : MonoBehaviour
+public class InventoryTabController : MonoBehaviour
 {
-    // public ItemContainer inventory;
     public GameObject panel;
     public List<InventorySlot> slots;
     public GameObject slotPrefab;
     public int slotCount = 20;
-
-    // private void Awake()
-    // {
-    //     Events.InventoryLoaded += Init;
-    // }
+    
+    private void Awake()
+    {
+        Events.InventoryLoaded += Init;
+    }
 
     public void Init()
     {
@@ -23,27 +21,18 @@ public class ItemPanel : MonoBehaviour
             var slotObject = Instantiate(slotPrefab, panel.transform);
             var slot = slotObject.GetComponent<InventorySlot>();
             slot.SetIndex(i);
+            slot.onClick += OnSlotClick;
             slots.Add(slot);
-            
+
+            if (i < 3)
+            {
+                slot.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+            }
         }
         
-        // SetIndex();
         Show();
         Events.ItemAdded += Show;
     }
-
-    // private void OnEnable()
-    // {
-    //     Show();
-    // }
-
-    // private void SetIndex()
-    // {
-    //     for (var i = 0; i < GameManager.Instance.Inventory.slots.Count && i < slots.Count; i++)
-    //     {
-    //         slots[i].setIndex(i);
-    //     }
-    // }
 
     public void Show()
     {
@@ -59,9 +48,10 @@ public class ItemPanel : MonoBehaviour
             }
         }
     }
-
-    public virtual void OnClick(int index)
+    
+    public void OnSlotClick(InventorySlot slot)
     {
-        
+        GameManager.Instance.dragController.OnClick(GameManager.Instance.Player.Inventory.slots[slot.index]);
+        Show();
     }
 }

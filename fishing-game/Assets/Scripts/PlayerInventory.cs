@@ -75,4 +75,12 @@ public class PlayerInventory : MonoBehaviour
         // GameManager.Instance.UIController.inventoryPanel.Show();
         Events.ItemAdded.Invoke();
     }
+
+    public void Remove(int index)
+    {
+        slots[index].item = null;
+        slots[index].count = 0;
+        
+        Events.ItemAdded.Invoke();
+    }
 }

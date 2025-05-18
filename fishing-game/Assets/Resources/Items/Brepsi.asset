@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Brepsi
   m_EditorClassIdentifier: 
   Name: Brepsi
+  Description: 
   Stackable: 1
   Icon: {fileID: -8001303778544820104, guid: b7b7844b1faeb5e4fa5d04a2afa1ed60, type: 3}
+  Price: 5

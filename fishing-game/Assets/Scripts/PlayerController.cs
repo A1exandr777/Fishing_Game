@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public Dictionary<string, int> caughtFish = new();
 
-    public float health;
-    public int money;
+    public float health = 100f;
+    public int money = 100;
     
     // public VectorValue startingPosition;
 
@@ -96,5 +96,29 @@ public class PlayerController : MonoBehaviour
     public void AnchorPlayer(bool state)
     {
         anchored = state;
+    }
+
+    public void SetMoney(int value)
+    {
+        money = value;
+        Events.MoneyChanged.Invoke(money);
+    }
+    
+    public void TakeMoney(int amount)
+    {
+        if (!EnoughMoney(amount))
+            return;
+        money -= amount;
+        // Events.MoneyChanged.Invoke(money);
+    }
+
+    public void GiveMoney(int amount)
+    {
+        money += amount;
+    }
+
+    public bool EnoughMoney(int needed)
+    {
+        return money >= needed;
     }
 }

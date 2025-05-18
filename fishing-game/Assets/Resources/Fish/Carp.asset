@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Carp
   m_EditorClassIdentifier: 
   Name: "\u041A\u0430\u0440\u0430\u0441\u044C"
+  Description: 
   Stackable: 1
   Icon: {fileID: -8720549234139205794, guid: 8c08fdd1b32193c45a75a9d5f767d522, type: 3}
+  Price: 5

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -9,9 +10,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Image highlight;
 
-    private int index;
+    public UnityAction<InventorySlot> onClick;
 
-    public void setIndex(int i)
+    public int index;
+
+    public void SetIndex(int i)
     {
         index = i;
     }
@@ -42,8 +45,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var itemPanel = transform.parent.parent.parent.GetComponent<InventoryTabController>();
-        itemPanel.OnClick(index);
+        onClick.Invoke(this);
+        
+        // var itemPanel = transform.parent.parent.parent.GetComponent<InventoryTabController>();
+        // itemPanel.OnClick(index);
+        
         // var inventory = GameManager.instance.inventory;
         // GameManager.instance.dragController.OnClick(inventory.slots[index]);
         // transform.parent.GetComponent<InventoryPanel>().Show();

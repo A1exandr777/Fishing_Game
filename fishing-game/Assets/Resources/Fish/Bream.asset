@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Bream
   m_EditorClassIdentifier: 
   Name: "\u041B\u0435\u0449"
+  Description: 
   Stackable: 1
   Icon: {fileID: -5662205922112217821, guid: cee92972819578c49a9c45ec2d9de234, type: 3}
+  Price: 5

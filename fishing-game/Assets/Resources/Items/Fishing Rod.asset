@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Fishing Rod
   m_EditorClassIdentifier: 
   Name: Fishing Rod
+  Description: 
   Stackable: 0
   Icon: {fileID: -8802689563237106462, guid: d3f66d350edbb0644bb67834d04c4154, type: 3}
+  Price: 200

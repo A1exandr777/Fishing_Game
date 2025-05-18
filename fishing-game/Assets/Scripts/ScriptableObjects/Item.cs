@@ -8,4 +8,5 @@ public class Item : ScriptableObject
     public string Description;
     public bool Stackable;
     public Sprite Icon;
+    public int Price;
 }

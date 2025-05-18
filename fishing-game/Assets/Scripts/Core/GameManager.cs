@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public FishingController FishingController;
     public UIController UIController;
     public CutsceneController CutsceneController;
+    public ShopController ShopController;
     
     [Header("Scene Management")]
     public string currentScene;
@@ -70,8 +71,8 @@ public class GameManager : MonoBehaviour
         }
 
         Player.caughtFish = data.caughtFish;
-        Player.health = data.playerHealth;
-        Player.money = data.playerMoney;
+        // Player.health = data.playerHealth;
+        // Player.money = data.playerMoney;
             
         var pos = data.playerPosition;
             
