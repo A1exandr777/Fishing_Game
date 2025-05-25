@@ -10,6 +10,9 @@ public static class Events
     public static UnityAction<int> MoneyChanged;
     public static UnityAction<ShopItems> ShopUpdated;
     public static UnityAction<int> ToolbarScroll;
+    public static UnityAction<int, int> TimeChanged;
+    public static UnityAction DayStarted;
+    public static UnityAction NightStarted;
     
     public static UnityAction<GameObject> PlayerSpawned;
     public static UnityAction<UIController> UILoaded;

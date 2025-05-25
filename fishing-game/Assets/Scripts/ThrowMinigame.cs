@@ -1,12 +1,6 @@
-using System;
 using System.Collections;
-using Unity.Mathematics;
-using UnityEditor.Callbacks;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class ThrowMinigame : MonoBehaviour
 {

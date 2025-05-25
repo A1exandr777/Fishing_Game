@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]

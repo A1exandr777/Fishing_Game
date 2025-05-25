@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     public CutsceneController CutsceneController;
     public ShopController ShopController;
     public DialogueController DialogueController;
-    public SoundController SoundController;
     
     [Header("Scene Management")]
     public string currentScene;
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         // UIController.Init();
         SceneLoader.Instance.LoadScene("MainMenu", fadeIn: false);
-        SoundController.StartBackgroundMusic();
+        // SoundController.Instance.StartBackgroundMusic();
     }
 
     public void StartGame()
