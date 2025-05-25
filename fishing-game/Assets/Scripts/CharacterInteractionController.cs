@@ -32,14 +32,14 @@ public class CharacterInteractionController : MonoBehaviour
             }
         }
         
-        if (Mouse.current.leftButton.wasPressedThisFrame && !GameManager.Instance.FishingController.isFishing)
-        {
-        }
-
-        if (Mouse.current.leftButton.wasReleasedThisFrame && !GameManager.Instance.FishingController.isFishing)
-        {
-            
-        }
+        // if (Mouse.current.leftButton.wasPressedThisFrame && !GameManager.Instance.FishingController.isFishing)
+        // {
+        // }
+        //
+        // if (Mouse.current.leftButton.wasReleasedThisFrame && !GameManager.Instance.FishingController.isFishing)
+        // {
+        //     
+        // }
     }
 
     // private void UseTool()

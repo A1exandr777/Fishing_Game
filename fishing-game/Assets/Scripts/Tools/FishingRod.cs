@@ -21,6 +21,13 @@ public class FishingRod : ToolObject
     private bool isCasting;
     private Vector3 targetPosition;
     private float castProgress;
+    
+    public bool isFishing;
+    public bool isThrowing;
+
+    public bool canFish = true;
+    public float sinceLastTimeFishing;
+    public float delay = 2f;
 
 
     public override void Init()
@@ -31,10 +38,22 @@ public class FishingRod : ToolObject
         lineRenderer.startWidth = 0.05f;
         lineRenderer.endWidth = 0.05f;
         lineRenderer.material = lineMaterial;
+
+        lineRenderer.enabled = false;
     }
 
     public void Update()
     {
+        if (!canFish)
+        {
+            sinceLastTimeFishing += Time.deltaTime;
+            if (sinceLastTimeFishing > delay)
+            {
+                sinceLastTimeFishing = 0f;
+                canFish = true;
+            }
+        }
+        
         if (isCasting)
         {
             castProgress += Time.deltaTime * castSpeed;
@@ -62,6 +81,8 @@ public class FishingRod : ToolObject
         linePositions[lineSegments - 1] = isCasting ? 
             Vector3.Lerp(tip.position, targetPosition, castProgress) : 
             hook.position;
+        
+        hook.position = isCasting ? linePositions[lineSegments - 1] : targetPosition;
     
         // Промежуточные точки (симуляция провисания)
         for (var i = 1; i < lineSegments - 1; i++)
@@ -86,37 +107,50 @@ public class FishingRod : ToolObject
         lineRenderer.SetPositions(linePositions);
     }
 
+    public void FinishedFishing()
+    {
+        canFish = false;
+        
+        lineRenderer.enabled = false;
+    }
+
     public override void OnDown()
     {
+        if (!canFish) return;
+        if (isFishing || isThrowing || isCasting) return;
+        
         animator.Play("Prepare", -1, 0f);
+
+        lineRenderer.enabled = false;
         
         var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
         var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");
         if (!waterTilemap) return;
             
-        var worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var worldPos = CameraController.Instance.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
         var gridPos = waterTilemap.WorldToCell(worldPos);
         var waterTile = waterTilemap.GetTile(gridPos);
 
-        targetPosition = worldPos;
+        targetPosition = new Vector3(worldPos.x, worldPos.y, hook.position.z);
         
         if (waterTile)
         {
-            GameManager.Instance.FishingController.StartFishing();
+            GameManager.Instance.FishingController.StartFishing(this);
         }
     }
 
     public override void OnUp()
     {
-        animator.Play("Throw", -1, 0f);
+        if (!canFish) return;
+        if (isFishing || isThrowing || isCasting) return;
         
-        if (isCasting) return;
+        animator.Play("Throw", -1, 0f);
     
         // targetPosition = target;
         castProgress = 0f;
         isCasting = true;
+        lineRenderer.enabled = true;
         hook.position = targetPosition;
-        Debug.Log(targetPosition);
         hook.gameObject.SetActive(true);
     }
     
@@ -125,17 +159,5 @@ public class FishingRod : ToolObject
         var scale = gameObject.transform.localScale;
         scale.x = Mathf.Sign(direction.x);
         gameObject.transform.localScale = scale;
-    }
-
-    public void Prepare()
-    {
-        animator.Play("Prepare", -1, 0f);
-        // animator.Play("Ready", -1, 0f);
-    }
-
-    public void Throw()
-    {
-        animator.Play("Throw", -1, 0f);
-        // animator.Play("Idle", -1, 0f);
     }
 }

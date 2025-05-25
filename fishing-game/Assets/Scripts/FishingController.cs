@@ -8,8 +8,10 @@ public class FishingController : MonoBehaviour
     
     // public ThrowMinigame throwMinigame;
     // public FishingMinigame fishingMinigame;
-    public bool isFishing;
-    public bool isThrowing;
+    // public bool isFishing;
+    // public bool isThrowing;
+
+    private FishingRod currentRod;
 
     private Item fish;
     
@@ -31,9 +33,10 @@ public class FishingController : MonoBehaviour
         }
     }
 
-    public void StartFishing()
+    public void StartFishing(FishingRod fishingRod)
     {
-        if (isFishing || isThrowing) return;
+        if (fishingRod.isFishing || fishingRod.isThrowing) return;
+        currentRod = fishingRod;
         // isThrowing = true;
         GameManager.Instance.Player.AnchorPlayer(true);
         uiController.throwMinigame.StartMinigame();
@@ -43,7 +46,7 @@ public class FishingController : MonoBehaviour
     public void EndThrow(float strength)
     {
         // isThrowing = false;
-        isFishing = true;
+        currentRod.isFishing = true;
 
         fish = ItemDatabase.GetRandomFish();
         
@@ -52,8 +55,9 @@ public class FishingController : MonoBehaviour
 
     public void EndFishing(bool success)
     {
-        isFishing = false;
+        currentRod.isFishing = false;
         GameManager.Instance.Player.AnchorPlayer(false);
+        currentRod.FinishedFishing();
         if (success)
         {
             GameManager.Instance.Player.Inventory.Add(fish, 1);
