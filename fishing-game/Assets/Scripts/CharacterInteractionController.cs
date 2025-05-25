@@ -6,9 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class CharacterInteractionController : MonoBehaviour
 {
-    [SerializeField] float offsetDistance = 1f;
-    [SerializeField] float interactionRadius = 1.2f;
-    public FishingRod rod;
+    public float offsetDistance = 1f;
+    public float interactionRadius = 1.2f;
 
     private void Awake()
     {
@@ -19,30 +18,27 @@ public class CharacterInteractionController : MonoBehaviour
     {
         if (GameManager.Instance.UIController.GetComponent<InventoryController>().open)
             return;
+
+        var tool = GameManager.Instance.Player.currentTool;
+        if (tool)
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                tool.GetComponent<ToolObject>().OnDown();
+            }
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                tool.GetComponent<ToolObject>().OnUp();
+            }
+        }
         
         if (Mouse.current.leftButton.wasPressedThisFrame && !GameManager.Instance.FishingController.isFishing)
         {
-            rod.Prepare();
-            
-            // UseTool();
-            var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
-            var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");
-            if (!waterTilemap) return;
-            
-            var worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var gridPos = waterTilemap.WorldToCell(worldPos);
-            var waterTile = waterTilemap.GetTile(gridPos);
-
-            // var waterTile = GameManager.Instance.tilemapController.GetTileBase(Input.mousePosition);
-            if (waterTile)
-            {
-                GameManager.Instance.FishingController.StartFishing();
-            }
         }
 
         if (Mouse.current.leftButton.wasReleasedThisFrame && !GameManager.Instance.FishingController.isFishing)
         {
-            rod.Throw();
+            
         }
     }
 

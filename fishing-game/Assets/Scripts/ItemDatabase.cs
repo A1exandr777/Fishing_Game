@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using Random = System.Random;
 
 public static class ItemDatabase
@@ -13,7 +15,9 @@ public static class ItemDatabase
 
         _items = new Dictionary<string, Item>();
         _itemList = new List<Item>();
-        var loadedItems = Resources.LoadAll<Item>("Fish");
+        var loadedItems = Resources.LoadAll<Item>("");
+        // var allItems = Resources.LoadAll<Item>("");
+        // var filteredItems = allItems.Where(obj => AssetDatabase.GetAssetPath(obj).Contains(targetFolder)).ToArray();
 
         foreach (var item in loadedItems)
         {
@@ -29,7 +33,7 @@ public static class ItemDatabase
         if (_items.TryGetValue(itemName, out var item))
             return item;
 
-        Debug.LogError($"Item '{itemName}' not found!");
+        Debug.LogError($"Item \"{itemName}\" not found!");
         return null;
     }
 

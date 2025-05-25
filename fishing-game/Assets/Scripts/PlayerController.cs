@@ -1,10 +1,16 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
+
+    public ToolbarController toolbar;
+
+    public GameObject currentTool;
 
     public PlayerInventory Inventory;
 
@@ -37,6 +43,10 @@ public class PlayerController : MonoBehaviour
         
         
         animator = GetComponent<Animator>();
+
+        // UpdateTool(toolbar.selectedItem);
+        Events.InventoryLoaded += () => UpdateTool(toolbar.selectedItem);
+        Events.ToolbarScroll += UpdateTool;
         // transform.position = startingPosition.initialValue;
 
         // var data = SaveSystem.LoadGame(1);
@@ -76,6 +86,11 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("lastHorizontal", horizontal);
             animator.SetFloat("lastVertical", vertical);
         }
+
+        if (currentTool)
+        {
+            currentTool.GetComponent<ToolObject>().UpdateDirection(lastMotionVector);
+        }
     }
 
     private void FixedUpdate()
@@ -98,6 +113,19 @@ public class PlayerController : MonoBehaviour
         anchored = state;
     }
 
+    public void UpdateTool(int toolbarIndex)
+    {
+        if (currentTool)
+        {
+            Destroy(currentTool.gameObject);
+        }
+
+        var item = Inventory.slots[toolbarIndex].item;
+        if (!item || item is not Tool tool)
+            return;
+        currentTool = Instantiate(tool.Prefab, gameObject.transform);
+    }
+
     public void SetMoney(int value)
     {
         money = value;
@@ -109,12 +137,13 @@ public class PlayerController : MonoBehaviour
         if (!EnoughMoney(amount))
             return;
         money -= amount;
-        // Events.MoneyChanged.Invoke(money);
+        Events.MoneyChanged.Invoke(money);
     }
 
     public void GiveMoney(int amount)
     {
         money += amount;
+        Events.MoneyChanged.Invoke(money);
     }
 
     public bool EnoughMoney(int needed)

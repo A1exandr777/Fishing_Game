@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public TilemapController tilemapController;
     
     [Header("Game Settings")]
-    public bool isGamePaused = false;
+    public bool isGamePaused;
     
     [Header("Player References")]
     public PlayerController Player;
@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public UIController UIController;
     public CutsceneController CutsceneController;
     public ShopController ShopController;
+    public DialogueController DialogueController;
+    public SoundController SoundController;
     
     [Header("Scene Management")]
     public string currentScene;
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
 
         // UIController.Init();
         SceneLoader.Instance.LoadScene("MainMenu", fadeIn: false);
+        SoundController.StartBackgroundMusic();
     }
 
     public void StartGame()

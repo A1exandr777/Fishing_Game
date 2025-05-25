@@ -2,19 +2,36 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// public class ItemInfo
-// {
-//     public Item item;
-// }
+[Serializable]
+public class ItemInfo
+{
+    public Item item;
+    public bool returnable;
+    public int count = -1;
+}
 
 [CreateAssetMenu(menuName = "Data/Shop Items")]
 public class ShopItems : ScriptableObject
 {
-    public List<Item> items;
+    public List<ItemInfo> items;
     
-    public void Add(Item item)
+    public void Add(ItemInfo itemInfo)
     {
-        items.Add(item);
+        var item = items.Find(info => info.item == itemInfo.item && info.returnable == itemInfo.returnable);
+        if (item != null)
+        {
+            item.count += itemInfo.count;
+        }
+        else
+        {
+            items.Add(itemInfo);
+        }
+        Events.ShopUpdated.Invoke(this);
+    }
+
+    public void Remove(ItemInfo itemInfo)
+    {
+        items.Remove(itemInfo);
         Events.ShopUpdated.Invoke(this);
     }
 }

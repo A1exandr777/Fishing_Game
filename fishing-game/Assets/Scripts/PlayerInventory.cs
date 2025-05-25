@@ -69,6 +69,7 @@ public class PlayerInventory : MonoBehaviour
             if (itemSlot is not null)
             {
                 itemSlot.item = item;
+                itemSlot.count = 1;
             }
         }
         

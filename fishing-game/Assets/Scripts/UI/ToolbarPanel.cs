@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToolbarPanel : ItemPanel
 {
-    [SerializeField] private ToolbarController toolbar;
+    public ToolbarController toolbar;
     private int current;
 
     private void Awake()
@@ -17,7 +17,8 @@ public class ToolbarPanel : ItemPanel
         Init();
         
         Show();
-        toolbar.onChange += Highlight;
+        Events.ToolbarScroll += Highlight;
+        // toolbar.onChange += Highlight;
         Highlight(0);
     }
     

@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryTabController : MonoBehaviour
 {
+    public TextMeshProUGUI moneyLabel;
+    
     public GameObject panel;
     public List<InventorySlot> slots;
     public GameObject slotPrefab;
@@ -12,6 +16,7 @@ public class InventoryTabController : MonoBehaviour
     private void Awake()
     {
         Events.InventoryLoaded += Init;
+        Events.MoneyChanged += UpdateMoney;
     }
 
     public void Init()
@@ -32,6 +37,11 @@ public class InventoryTabController : MonoBehaviour
         
         Show();
         Events.ItemAdded += Show;
+    }
+
+    public void UpdateMoney(int count)
+    {
+        moneyLabel.text = count.ToString();
     }
 
     public void Show()

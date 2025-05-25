@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b414b2c722ac77e429d5bd75c045390a, type: 3}
+  m_Script: {fileID: 11500000, guid: e4bea8fe51cf5fa4f91fa2422bb66288, type: 3}
   m_Name: Fishing Rod
   m_EditorClassIdentifier: 
-  Name: Fishing Rod
+  Name: "\u0423\u0434\u043E\u0447\u043A\u0430"
   Description: 
   Stackable: 0
   Icon: {fileID: -8802689563237106462, guid: d3f66d350edbb0644bb67834d04c4154, type: 3}
-  Price: 200
+  Price: 100
+  Prefab: {fileID: 5891746830041356853, guid: 9ab10397587d32a45aff170dd28cc88b, type: 3}

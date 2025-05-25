@@ -50,16 +50,14 @@ public class ShopController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (var item in shop.items)
+        foreach (var itemInfo in shop.items)
         {
             var shopItem = Instantiate(shopItemPrefab, npcInventory.transform);
             var itemController = shopItem.GetComponent<ShopItem>();
-            itemController.Set(item);
+            itemController.Set(itemInfo);
             itemController.onClick += OnShopItemClick;
-            // itemController.itemIcon.sprite = item.Icon;
-            // itemController.itemName.text = item.Name;
-            // itemController.itemPrice.text = item.Price.ToString();
-            shopItem.GetComponent<TooltipTrigger>().content = item.Name;
+            
+            shopItem.GetComponent<TooltipTrigger>().content = itemInfo.item.Name;
         }
     }
 
@@ -96,17 +94,28 @@ public class ShopController : MonoBehaviour
 
     public void OnShopItemClick(ShopItem shopItem)
     {
-        
+        if (!GameManager.Instance.Player.EnoughMoney(shopItem.shopItemInfo.item.Price))
+            return;
+        GameManager.Instance.Player.TakeMoney(shopItem.shopItemInfo.item.Price);
+        GameManager.Instance.Player.Inventory.Add(shopItem.shopItemInfo.item, Math.Max(shopItem.shopItemInfo.count, 1));
+        if (shopItem.shopItemInfo.returnable)
+        {
+            currentShop.Remove(shopItem.shopItemInfo);
+        }
+        // Debug.Log(GameManager.Instance.Player.money);
     }
     
     public void OnSlotClick(InventorySlot slot)
     {
         var itemSlot = GameManager.Instance.Player.Inventory.slots[slot.index];
+        if (itemSlot.item == null)
+            return;
         
-        currentShop.Add(itemSlot.item);
+        // currentShop.Add(itemSlot.item);
+        currentShop.Add(new ItemInfo() {item = itemSlot.item, returnable = true, count = itemSlot.count});
         
         GameManager.Instance.Player.GiveMoney((int)(itemSlot.item.Price * 0.5f) * itemSlot.count);
         GameManager.Instance.Player.Inventory.Remove(slot.index);
-        Debug.Log(GameManager.Instance.Player.money);
+        // Debug.Log(GameManager.Instance.Player.money);
     }
 }

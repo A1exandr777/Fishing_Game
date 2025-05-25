@@ -9,27 +9,30 @@ public class ShopItem : MonoBehaviour, IPointerClickHandler
     public Image itemIcon;
     public TextMeshProUGUI itemPrice;
     public TextMeshProUGUI itemName;
+    public Image returnIcon;
 
-    public Item shopItem;
+    public ItemInfo shopItemInfo;
 
     public UnityAction<ShopItem> onClick;
     
-    public void Set(Item item)
+    public void Set(ItemInfo itemInfo)
     {
-        shopItem = item;
-        itemIcon.sprite = item.Icon;
-        itemName.text = item.Name;
-        itemPrice.text = item.Price.ToString();
+        shopItemInfo = itemInfo;
+        itemIcon.sprite = itemInfo.item.Icon;
+        itemName.text = itemInfo.item.Name;
+        itemPrice.text = itemInfo.item.Price.ToString();
+        
+        returnIcon.gameObject.SetActive(itemInfo.returnable);
     }
     
     public void OnPointerClick(PointerEventData eventData)
     {
         onClick.Invoke(this);
         
-        if (!GameManager.Instance.Player.EnoughMoney(shopItem.Price))
-            return;
-        GameManager.Instance.Player.TakeMoney(shopItem.Price);
-        GameManager.Instance.Player.Inventory.Add(shopItem);
-        Debug.Log(GameManager.Instance.Player.money);
+        // if (!GameManager.Instance.Player.EnoughMoney(shopItemInfo.item.Price))
+        //     return;
+        // GameManager.Instance.Player.TakeMoney(shopItemInfo.item.Price);
+        // GameManager.Instance.Player.Inventory.Add(shopItemInfo.item);
+        // Debug.Log(GameManager.Instance.Player.money);
     }
 }

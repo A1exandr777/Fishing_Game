@@ -9,6 +9,7 @@ public static class Events
     public static UnityAction InventoryLoaded;
     public static UnityAction<int> MoneyChanged;
     public static UnityAction<ShopItems> ShopUpdated;
+    public static UnityAction<int> ToolbarScroll;
     
     public static UnityAction<GameObject> PlayerSpawned;
     public static UnityAction<UIController> UILoaded;

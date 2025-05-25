@@ -4,19 +4,16 @@ using UnityEngine;
 public class ToolbarController : MonoBehaviour
 {
     public int toolbarSize = 3;
-    private int selectedItem;
-
-    public Action<int> onChange;
+    public int selectedItem;
 
     private void Update()
     {
         var delta = Input.mouseScrollDelta.y;
-        if (delta != 0)
-        {
-            selectedItem += Math.Sign(delta);
-            selectedItem = selectedItem < 0 ? toolbarSize - 1 : (selectedItem >= toolbarSize ? 0 : selectedItem);
-            onChange?.Invoke(selectedItem);
-        }
+        if (delta == 0) return;
+        
+        selectedItem += Math.Sign(delta);
+        selectedItem = selectedItem < 0 ? toolbarSize - 1 : (selectedItem >= toolbarSize ? 0 : selectedItem);
+        Events.ToolbarScroll?.Invoke(selectedItem);
     }
 
     public void Set(int index)
