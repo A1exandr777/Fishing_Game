@@ -39,15 +39,13 @@ public static class ItemDatabase
 
     public static Item GetRandomFish()
     {
-        if (_itemList == null) Initialize();
-        
         var rng = new Random();
-        return _itemList[rng.Next(_itemList.Count)];
+        return GetAllFish()[rng.Next(_itemList.Count)];
     }
 
     public static List<Item> GetAllFish()
     {
         if (_itemList == null) Initialize();
-        return _itemList;
+        return _itemList.Where(item => item.Type == ItemType.Fish).ToList();
     }
 }

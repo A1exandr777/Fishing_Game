@@ -17,3 +17,4 @@ MonoBehaviour:
   Stackable: 1
   Icon: {fileID: -2987843178875456437, guid: ff00fcf507f61204782e2743320647b6, type: 3}
   Price: 8
+  Type: 0

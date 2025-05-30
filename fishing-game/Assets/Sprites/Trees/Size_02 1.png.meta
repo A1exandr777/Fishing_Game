@@ -136,12 +136,12 @@ TextureImporter:
       name: Size_02 1_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 47
-        width: 47
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 3
+        y: 48
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.44078046, y: 0.032291576}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,7 +163,7 @@ TextureImporter:
         width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Size_02 1_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 47
-        width: 47
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 67
+        y: 48
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.44670236, y: 0.017675927}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,7 +207,7 @@ TextureImporter:
         width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: Size_02 1_4
       rect:
         serializedVersion: 2
-        x: 2
+        x: 3
         y: 0
-        width: 47
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.45262435, y: 0.017675528}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -251,7 +251,7 @@ TextureImporter:
         width: 8
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -268,12 +268,12 @@ TextureImporter:
       name: Size_02 1_6
       rect:
         serializedVersion: 2
-        x: 66
+        x: 67
         y: 0
-        width: 47
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.44670236, y: 0.017675528}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -295,7 +295,7 @@ TextureImporter:
         width: 8
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -317,7 +317,7 @@ TextureImporter:
         width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -339,7 +339,7 @@ TextureImporter:
         width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -361,7 +361,7 @@ TextureImporter:
         width: 8
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -383,7 +383,7 @@ TextureImporter:
         width: 8
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -396,11 +396,99 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Size_02 1_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 31
+      alignment: 9
+      pivot: {x: 0.4785328, y: 0.03464902}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30351ff57d577834ea012493a44794bb
+      internalID: 2100703692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Size_02 1_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 31
+      alignment: 9
+      pivot: {x: 0.4677992, y: 0.029109217}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c16ca784dba4484790e883aa0cc3435
+      internalID: -1761995360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Size_02 1_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 31
+      alignment: 9
+      pivot: {x: 0.4785328, y: 0.023568833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 493c2140d43c52e4cb62b98dc968192e
+      internalID: -637288599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Size_02 1_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 31
+      alignment: 9
+      pivot: {x: 0.4785323, y: 0.023569258}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a604723a45c8b74e858cd8fe80a9961
+      internalID: -1222777033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 239dc7c31a4ac034ba96c0a14aebd124
     internalID: 0
     vertices: []
     indices: 
@@ -414,6 +502,10 @@ TextureImporter:
       Size_02 1_1: -7213913174824852693
       Size_02 1_10: 9084842998554708796
       Size_02 1_11: -4935003764332763397
+      Size_02 1_12: 2100703692
+      Size_02 1_13: -1761995360
+      Size_02 1_14: -637288599
+      Size_02 1_15: -1222777033
       Size_02 1_2: -4829102347115408094
       Size_02 1_3: -8112632984705304532
       Size_02 1_4: -2969238112956879186

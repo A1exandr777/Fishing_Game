@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum ItemType
+{
+    Fish,
+    Unknown,
+}
+
 [CreateAssetMenu(menuName = "Data/Items/Item")]
 public class Item : ScriptableObject
 {
@@ -9,4 +15,5 @@ public class Item : ScriptableObject
     public bool Stackable;
     public Sprite Icon;
     public int Price;
+    public ItemType Type = ItemType.Unknown;
 }

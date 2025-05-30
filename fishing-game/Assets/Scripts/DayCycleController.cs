@@ -7,7 +7,6 @@ public class DayCycleController : MonoBehaviour
     public static DayCycleController Instance;
     
     [Header("Time Settings")]
-    [Tooltip("Duration of full day-night cycle in seconds")]
     public float dayLengthInSeconds = 300f; // 5 minutes default
     [Range(0, 1)] public float currentCyclePosition = 0.25f; // Start at morning
 
@@ -16,6 +15,8 @@ public class DayCycleController : MonoBehaviour
 
     private bool dayStarted;
     private bool nightStarted;
+
+    public bool timeStop;
     
     
     [Header("Lighting")]
@@ -37,6 +38,9 @@ public class DayCycleController : MonoBehaviour
     
     private void Update()
     {
+        if (timeStop)
+            return;
+        
         // Advance time
         currentCyclePosition += Time.deltaTime / dayLengthInSeconds;
 

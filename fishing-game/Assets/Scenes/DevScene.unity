@@ -412,7 +412,7 @@ Transform:
   m_GameObject: {fileID: 159232008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7746975, y: -0.0057947673, z: -0.06862476}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2120,27 +2120,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayLengthInSeconds: 300
-  currentCyclePosition: 0
+  currentCyclePosition: 0.5
   hours: 0
   minutes: 0
+  timeStop: 0
   globalLight: {fileID: 760381325}
   lightColorOverDay:
     serializedVersion: 2
     key0: {r: 0.050980393, g: 0.08627451, b: 0.19215687, a: 1}
     key1: {r: 0.050980393, g: 0.08627451, b: 0.19215687, a: 1}
     key2: {r: 0.10980392, g: 0.21568628, b: 0.53333336, a: 0}
-    key3: {r: 0.10980392, g: 0.21568628, b: 0.53333336, a: 0}
-    key4: {r: 0.050980393, g: 0.08627451, b: 0.19215687, a: 0}
-    key5: {r: 0.05192593, g: 0.08705764, b: 0.19245279, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0.10980392, g: 0.21568628, b: 0.53333336, a: 0}
+    key5: {r: 0.050980393, g: 0.08627451, b: 0.19215687, a: 0}
+    key6: {r: 0.05192593, g: 0.08705764, b: 0.19245279, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 231
     ctime1: 8250
     ctime2: 15960
-    ctime3: 49575
-    ctime4: 56977
-    ctime5: 65535
-    ctime6: 0
+    ctime3: 32768
+    ctime4: 49575
+    ctime5: 56977
+    ctime6: 65535
     ctime7: 0
     atime0: 0
     atime1: 65535
@@ -2152,7 +2153,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 6
+    m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   lightIntensityOverDay:
     serializedVersion: 2
@@ -5930,7 +5931,7 @@ Transform:
   m_GameObject: {fileID: 1911635729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.483639, y: -0.34983543, z: 0.06040568}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6962,17 +6963,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0042575076, y: -0.4407641}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.75, y: 1}
     newSize: {x: 0.24, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.2596053, y: 0.13670295}
+  m_Size: {x: 0.25, y: 0.1}
   m_EdgeRadius: 0
 --- !u!224 &1796581170502784908
 RectTransform:
@@ -7704,6 +7705,7 @@ GameObject:
   - component: {fileID: 1622537227209460869}
   - component: {fileID: 5671984276033849579}
   - component: {fileID: 8999839809703408186}
+  - component: {fileID: 8999839809703408188}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7724,6 +7726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 766318620712438055}
+  offset: {x: 0, y: 0.5, z: -1}
 --- !u!1 &8253250898406885780
 GameObject:
   m_ObjectHideFlags: 0
@@ -7884,7 +7887,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &8999839809703408185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8007,6 +8010,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolbarSize: 3
   selectedItem: 0
+--- !u!114 &8999839809703408188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523815417675195625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a916db9617ec3ee4db87f1fa0e6a2c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 766318620712438055}
+  radius: 2
+  offset: {x: 0, y: 0.5, z: 0}
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  targetMaterial: {fileID: 2100000, guid: f54aa9fce158b0348912b522335e47d5, type: 2}
+  cameraTransform: {fileID: 962128027177257397}
 --- !u!4 &9106027377966097151
 Transform:
   m_ObjectHideFlags: 0
@@ -8016,7 +8039,7 @@ Transform:
   m_GameObject: {fileID: 7075048800395579751}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.373, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

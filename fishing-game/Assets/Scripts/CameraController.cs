@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
     public static CameraController Instance;
     
     public Transform player;
-    private Vector3 offset = new Vector3(0, 0, -1);
+    public Vector3 offset = new Vector3(0, 0, -1);
     
     private void Awake()
     {
