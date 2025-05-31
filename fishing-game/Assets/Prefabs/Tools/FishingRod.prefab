@@ -303,7 +303,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   tip: {fileID: 1111378997462326374}
   hook: {fileID: 1685707709448817097}
-  lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  lineMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   castSpeed: 5
   lineTension: 1
   lineSegments: 20

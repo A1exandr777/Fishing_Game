@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public ToolbarController toolbar;
 
     public GameObject currentTool;
+
+    public Light2D playerLight;
 
     public PlayerInventory Inventory;
 
@@ -89,6 +92,9 @@ public class PlayerController : MonoBehaviour
         {
             currentTool.GetComponent<ToolObject>().UpdateDirection(lastMotionVector);
         }
+
+        var isDay = DayCycleController.Instance.currentCyclePosition is > 0.25f and < 0.75f;
+        playerLight.enabled = !isDay;
     }
 
     private void FixedUpdate()
