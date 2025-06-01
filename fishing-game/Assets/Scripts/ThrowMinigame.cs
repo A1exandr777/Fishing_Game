@@ -14,13 +14,12 @@ public class ThrowMinigame : MonoBehaviour
     private bool released;
     private float progress;
 
-    private void Start()
-    {
-        
-    }
+    public FishingRod currentRod;
 
-    public void StartMinigame()
+    public void StartMinigame(FishingRod rod)
     {
+        currentRod = rod;
+        
         minigamePanel.SetActive(true);
 
         released = false;
@@ -46,12 +45,20 @@ public class ThrowMinigame : MonoBehaviour
             yield return null;
         }
         
-        minigamePanel.SetActive(false);
-        GameManager.Instance.FishingController.EndThrow(progress);
+        // minigamePanel.SetActive(false);
+        // GameManager.Instance.FishingController.EndThrow(progress);
+        // currentRod.EndThrow(progress);
     }
 
-    public void Release()
+    public float StopAndGetResults()
     {
         released = true;
+        minigamePanel.SetActive(false);
+        return progress;
     }
+
+    // public void Release()
+    // {
+    //     released = true;
+    // }
 }

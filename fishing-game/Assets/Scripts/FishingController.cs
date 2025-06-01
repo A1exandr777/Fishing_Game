@@ -14,11 +14,6 @@ public class FishingController : MonoBehaviour
     private FishingRod currentRod;
 
     private Item fish;
-    
-    private void Awake()
-    {
-        
-    }
 
     private void Update()
     {
@@ -29,7 +24,7 @@ public class FishingController : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             uiController.fishingMinigame.StopReeling();
-            uiController.throwMinigame.Release();
+            // uiController.throwMinigame.Release();
         }
     }
 
@@ -39,7 +34,7 @@ public class FishingController : MonoBehaviour
         currentRod = fishingRod;
         // isThrowing = true;
         GameManager.Instance.Player.AnchorPlayer(true);
-        uiController.throwMinigame.StartMinigame();
+        uiController.throwMinigame.StartMinigame(currentRod);
         // EndThrow(1f);
     }
 
@@ -47,17 +42,18 @@ public class FishingController : MonoBehaviour
     {
         // isThrowing = false;
         currentRod.isFishing = true;
+        currentRod.throwStrength = strength;
 
         fish = ItemDatabase.GetRandomFish();
         
-        uiController.fishingMinigame.StartMinigame(fish, strength);
+        uiController.fishingMinigame.StartMinigame(fish, strength, currentRod);
     }
 
     public void EndFishing(bool success)
     {
         currentRod.isFishing = false;
         GameManager.Instance.Player.AnchorPlayer(false);
-        currentRod.FinishedFishing();
+        currentRod.EndFishing(success);
         if (success)
         {
             GameManager.Instance.Player.Inventory.Add(fish, 1);

@@ -19,18 +19,18 @@ public class CharacterInteractionController : MonoBehaviour
         if (GameManager.Instance.UIController.GetComponent<InventoryController>().open)
             return;
 
-        var tool = GameManager.Instance.Player.currentTool;
-        if (tool)
-        {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                tool.GetComponent<ToolObject>().OnDown();
-            }
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
-            {
-                tool.GetComponent<ToolObject>().OnUp();
-            }
-        }
+        // var tool = GameManager.Instance.Player.currentTool;
+        // if (tool)
+        // {
+        //     if (Mouse.current.leftButton.wasPressedThisFrame)
+        //     {
+        //         tool.GetComponent<ToolObject>().OnDown();
+        //     }
+        //     if (Mouse.current.leftButton.wasReleasedThisFrame)
+        //     {
+        //         tool.GetComponent<ToolObject>().OnUp();
+        //     }
+        // }
         
         // if (Mouse.current.leftButton.wasPressedThisFrame && !GameManager.Instance.FishingController.isFishing)
         // {

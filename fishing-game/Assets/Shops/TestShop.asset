@@ -13,21 +13,9 @@ MonoBehaviour:
   m_Name: TestShop
   m_EditorClassIdentifier: 
   items:
-  - item: {fileID: 11400000, guid: 25c57c8677ad1c346a8acffd6f8854da, type: 2}
+  - item: {fileID: 11400000, guid: 1ffbf6d5ed02522459ddb43b08d808a9, type: 2}
     returnable: 0
     count: -1
-  - item: {fileID: 11400000, guid: 55cd4201327a59546b9a87316cc99297, type: 2}
-    returnable: 0
-    count: -1
-  - item: {fileID: 11400000, guid: 1b2d958b6c0aa764e9abffa5ce3aa5ed, type: 2}
-    returnable: 0
-    count: -1
-  - item: {fileID: 11400000, guid: 941a19cc6300c174d81a427af34f3a3c, type: 2}
-    returnable: 0
-    count: -1
-  - item: {fileID: 11400000, guid: 9e0d998867af1dd47a9c496ba1656532, type: 2}
-    returnable: 0
-    count: -1
-  - item: {fileID: 11400000, guid: 855b42f0e4f891e48af0d3a2efb11f90, type: 2}
+  - item: {fileID: 11400000, guid: 04d20a28ca4c32a4f9782b346db758cd, type: 2}
     returnable: 0
     count: -1

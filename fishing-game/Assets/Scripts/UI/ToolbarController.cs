@@ -19,5 +19,6 @@ public class ToolbarController : MonoBehaviour
     public void Set(int index)
     {
         selectedItem = index;
+        Events.ToolbarScroll?.Invoke(selectedItem);
     }
 }

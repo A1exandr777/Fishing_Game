@@ -20,9 +20,13 @@ public class FishingMinigame : MonoBehaviour
     private bool isReeling;
     private float fishPosition = 0.5f;
     private float fishMovementDirection = 1f;
+
+    public FishingRod currentRod;
     
-    public void StartMinigame(Item fish, float score)
+    public void StartMinigame(Item fish, float strength, FishingRod rod)
     {
+        currentRod = rod;
+        
         currentFish = fish;
         minigamePanel.SetActive(true);
         
@@ -100,7 +104,8 @@ public class FishingMinigame : MonoBehaviour
         
         var success = catchProgress >= 1f;
         minigamePanel.SetActive(false);
-        GameManager.Instance.FishingController.EndFishing(success);
+        // GameManager.Instance.FishingController.EndFishing(success);
+        currentRod.EndFishing(success);
     }
     
     private void UpdateFishPosition()

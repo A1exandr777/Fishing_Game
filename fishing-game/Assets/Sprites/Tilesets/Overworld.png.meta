@@ -23838,6 +23838,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Overworld_1073
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 132
+        width: 80
+        height: 85
+      alignment: 9
+      pivot: {x: 0.49534303, y: 0.08581956}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62bec7f87b120c6439015bf1ad590872
+      internalID: 115242820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -23936,6 +23958,7 @@ TextureImporter:
       Overworld_1070: -1922670582
       Overworld_1071: 1664541751
       Overworld_1072: 1374534746
+      Overworld_1073: 115242820
       Overworld_108: -1599957052
       Overworld_109: 1073918173
       Overworld_11: 1042250435856239393

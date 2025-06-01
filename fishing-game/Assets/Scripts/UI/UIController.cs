@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour
     
     public ThrowMinigame throwMinigame;
     public FishingMinigame fishingMinigame;
-    public InventoryPanel inventoryPanel;
+    // public InventoryPanel inventoryPanel;
     public ToolbarPanel toolbarPanel;
     public GameObject gameCanvas;
     public GameObject menuCanvas;

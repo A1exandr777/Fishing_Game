@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     
     [Header("Scene Management")]
     public string currentScene;
-    // public Vector3 playerPositionBeforeSceneChange;
 
     private void Awake()
     {
@@ -52,12 +51,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneLoader.Instance.LoadScene("Game", fadeIn: false);
+            // SceneLoader.Instance.LoadScene("Game", fadeIn: false);
             
-            // CutsceneController.PlayCutscene(
-            //     startCutscene,
-            //     fadeOut: false,
-            //     callback: () => { SceneLoader.Instance.LoadScene("Game", fadeIn: false); });
+            CutsceneController.PlayCutscene(
+                startCutscene,
+                fadeOut: false,
+                callback: () => { SceneLoader.Instance.LoadScene("Game", fadeIn: false); });
         }
     }
 
