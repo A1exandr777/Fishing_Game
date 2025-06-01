@@ -6,18 +6,13 @@ public class GameManager : MonoBehaviour
 
     public Cutscene startCutscene;
     
-    // public GameObject player;
-    // public CharacterController2D characterController;
-    // public ItemContainer inventory;
     public ItemDragController dragController;
-    public TilemapController tilemapController;
     
     [Header("Game Settings")]
     public bool isGamePaused;
     
     [Header("Player References")]
     public PlayerController Player;
-    public FishingController FishingController;
     public UIController UIController;
     public CutsceneController CutsceneController;
     public ShopController ShopController;
@@ -72,8 +67,7 @@ public class GameManager : MonoBehaviour
         }
 
         Player.caughtFish = data.caughtFish;
-        // Player.health = data.playerHealth;
-        // Player.money = data.playerMoney;
+        Player.money = data.playerMoney;
             
         var pos = data.playerPosition;
             

@@ -49,6 +49,7 @@ public class FishingRod : ToolObject
         lineRenderer.material = lineMaterial;
 
         lineRenderer.enabled = false;
+        hook.gameObject.SetActive(false);
     }
 
     public void Update()
@@ -134,6 +135,7 @@ public class FishingRod : ToolObject
         canFish = false;
         
         lineRenderer.enabled = false;
+        hook.gameObject.SetActive(false);
         
         isFishing = false;
         GameManager.Instance.Player.AnchorPlayer(false);
@@ -161,6 +163,7 @@ public class FishingRod : ToolObject
         animator.Play("Prepare", -1, 0f);
 
         lineRenderer.enabled = false;
+        hook.gameObject.SetActive(false);
         
         // var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
         // var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");

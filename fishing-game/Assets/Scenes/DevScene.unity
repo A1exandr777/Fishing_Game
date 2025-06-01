@@ -6234,7 +6234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed12728ee2462846807611a54e9142e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perPage: 2
+  perPage: 5
   fishContainer: {fileID: 1916936880}
   pageNumber: {fileID: 417146924}
   nextButton: {fileID: 123931589}
@@ -6745,10 +6745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCutscene: {fileID: 11400000, guid: 55d04bba9e42ac3458193c8b14d3cd90, type: 2}
   dragController: {fileID: 2479448674782378427}
-  tilemapController: {fileID: 0}
   isGamePaused: 0
   Player: {fileID: 5039819397539384134}
-  FishingController: {fileID: 1511932778976367956}
   UIController: {fileID: 2054082155}
   CutsceneController: {fileID: 5547989710134693586}
   ShopController: {fileID: 2011945575}
@@ -6900,6 +6898,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiController: {fileID: 2054082155}
+  currentRod: {fileID: 0}
+  fish: {fileID: 0}
 --- !u!61 &1622537227209460869
 BoxCollider2D:
   m_ObjectHideFlags: 0

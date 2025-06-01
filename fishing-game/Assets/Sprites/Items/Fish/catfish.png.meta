@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff00fcf507f61204782e2743320647b6
+guid: 0240a458bccace94f8d2f4af53d99d51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2987843178875456437
-    second: bass_0
+      213: -6541868312297840152
+    second: catfish_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bass_0
+      name: catfish_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b44fd86857c0986d0800000000000000
-      internalID: -2987843178875456437
+      spriteID: 8e16a162e6d9635a0800000000000000
+      internalID: -6541868312297840152
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df94b00c30da1494390e56018497c6f8
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bass_0: -2987843178875456437
+      catfish_0: -6541868312297840152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

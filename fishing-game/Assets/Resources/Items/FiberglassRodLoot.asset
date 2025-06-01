@@ -10,20 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acb10c943fedffd45a68dc5bff997450, type: 3}
-  m_Name: ShitRodLoot
+  m_Name: FiberglassRodLoot
   m_EditorClassIdentifier: 
   lootEntries:
   - item: {fileID: 11400000, guid: 941a19cc6300c174d81a427af34f3a3c, type: 2}
-    dropRate: 49.8
+    dropRate: 29.1
   - item: {fileID: 11400000, guid: 55cd4201327a59546b9a87316cc99297, type: 2}
-    dropRate: 50.2
+    dropRate: 29.5
   - item: {fileID: 11400000, guid: 92f6c9372672f4644a38288f282cc955, type: 2}
-    dropRate: 30.3
+    dropRate: 9.4
   - item: {fileID: 11400000, guid: f6f53fb2fe16ed44ba16066f2870fe76, type: 2}
-    dropRate: 3.2
+    dropRate: 15
   - item: {fileID: 11400000, guid: c11da192a815bee46818da6126a6b7e2, type: 2}
-    dropRate: 29.9
+    dropRate: 12
   - item: {fileID: 11400000, guid: 4f52cbc721e7f2342a89dd655692841a, type: 2}
-    dropRate: 15.1
+    dropRate: 10.3
   - item: {fileID: 11400000, guid: 20ef9cc02cf1f6a45a408605d58a348f, type: 2}
-    dropRate: 30.3
+    dropRate: 12.4
+  - item: {fileID: 11400000, guid: 5b9a0ee58399df24ca6455a42f497e4e, type: 2}
+    dropRate: 70.1
+  - item: {fileID: 11400000, guid: 432b00b9a91f8534c8c84a38933f1329, type: 2}
+    dropRate: 50.4
+  - item: {fileID: 11400000, guid: 4f6f5d62af2291147a33f52b85ceda61, type: 2}
+    dropRate: 50.4
+  - item: {fileID: 11400000, guid: ac81ed44d74bb4545afed9e5200ddc79, type: 2}
+    dropRate: 50.4
+  - item: {fileID: 11400000, guid: 91cd225d9d4b8f04294ee7c1a1ed215a, type: 2}
+    dropRate: 50.4
+  - item: {fileID: 11400000, guid: 855b42f0e4f891e48af0d3a2efb11f90, type: 2}
+    dropRate: 50.4
+  - item: {fileID: 11400000, guid: 25c57c8677ad1c346a8acffd6f8854da, type: 2}
+    dropRate: 50.4

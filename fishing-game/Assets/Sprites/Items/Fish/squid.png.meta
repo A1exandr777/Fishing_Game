@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff00fcf507f61204782e2743320647b6
+guid: bd788011911279d4899b2bb1e977f2ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2987843178875456437
-    second: bass_0
+      213: -2902970233842926932
+    second: squid_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bass_0
+      name: squid_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,15 +108,15 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b44fd86857c0986d0800000000000000
-      internalID: -2987843178875456437
+      spriteID: caa7242f3f396b7d0800000000000000
+      internalID: -2902970233842926932
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df94b00c30da1494390e56018497c6f8
+    spriteID: e93b03aee2919f74986c8176892c68a8
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bass_0: -2987843178875456437
+      squid_0: -2902970233842926932
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

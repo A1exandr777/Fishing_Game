@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff00fcf507f61204782e2743320647b6
+guid: 9d59fc24376281e4e961bc5616e29ed5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2987843178875456437
-    second: bass_0
+      213: -658717716505458788
+    second: crayfish_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bass_0
+      name: crayfish_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 18
+        y: 19
+        width: 26
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b44fd86857c0986d0800000000000000
-      internalID: -2987843178875456437
+      spriteID: c978f641ab3cbd6f0800000000000000
+      internalID: -658717716505458788
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: df94b00c30da1494390e56018497c6f8
+    spriteID: db07edf352ae093469d857482b0d551d
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bass_0: -2987843178875456437
+      crayfish_0: -658717716505458788
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
