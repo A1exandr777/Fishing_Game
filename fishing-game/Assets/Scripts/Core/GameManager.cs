@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,6 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Cutscene startCutscene;
+
+    public ItemList startItems;
     
     public ItemDragController dragController;
     
@@ -46,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // SceneLoader.Instance.LoadScene("Game", fadeIn: false);
+            GiveStartItems();
             
             CutsceneController.PlayCutscene(
                 startCutscene,
@@ -55,23 +58,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void GiveStartItems()
+    {
+        foreach (var itemEntry in startItems.items)
+        {
+            Player.Inventory.Add(itemEntry.item, itemEntry.count); 
+        }
+    }
+
     private void LoadPlayerData()
     {
-        var data = SaveSystem.LoadGame(1);
-        if (data == null) return;
-        
-        
-        foreach (var item in data.playerInventory.items)
+        try
         {
-            Player.Inventory.Add(ItemDatabase.GetItem(item.itemID), item.quantity);
-        }
+            var data = SaveSystem.LoadGame(1);
+            if (data == null) return;
+        
+            foreach (var item in data.playerInventory.items)
+            {
+                Player.Inventory.Add(ItemDatabase.GetItem(item.itemID), item.quantity);
+            }
 
-        Player.caughtFish = data.caughtFish;
-        Player.money = data.playerMoney;
+            Player.caughtFish = data.caughtFish;
+            Player.money = data.playerMoney;
             
-        var pos = data.playerPosition;
+            DayCycleController.Instance.SetTimeOfDay(data.timeOfDay);
             
-        Player.SetPosition(new Vector3(pos[0], pos[1], pos[2]));
+            var pos = data.playerPosition;
+            
+            Player.SetPosition(new Vector3(pos[0], pos[1], pos[2]));
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Something went wrong when loading player data.");
+        }
     }
     
     public void TogglePause(bool pause)

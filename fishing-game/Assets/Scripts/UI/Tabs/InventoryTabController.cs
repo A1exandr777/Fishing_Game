@@ -36,6 +36,7 @@ public class InventoryTabController : MonoBehaviour
         }
         
         Show();
+        UpdateMoney(GameManager.Instance.Player.money);
         Events.ItemAdded += Show;
     }
 
@@ -48,13 +49,16 @@ public class InventoryTabController : MonoBehaviour
     {
         for (var i = 0; i < GameManager.Instance.Player.Inventory.slots.Count && i < slots.Count; i++)
         {
-            if (GameManager.Instance.Player.Inventory.slots[i].item is null)
+            var slot = GameManager.Instance.Player.Inventory.slots[i];
+            slots[i].GetComponent<TooltipTrigger>().content = slot.item is null ? "" : slot.item.Name;
+            
+            if (slot.item is null)
             {
                 slots[i].Clean();
             }
             else
             {
-                slots[i].Set(GameManager.Instance.Player.Inventory.slots[i]);
+                slots[i].Set(slot);
             }
         }
     }

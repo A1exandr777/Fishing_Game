@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ShopController : MonoBehaviour
 {
+    public TextMeshProUGUI moneyLabel;
+    
     public Button closeButton;
     
     public GameObject npcInventory;
@@ -30,9 +33,12 @@ public class ShopController : MonoBehaviour
         gameObject.SetActive(true);
         LoadNpcInventory(currentShop);
         LoadPlayerInventory();
+        
+        UpdateMoney(GameManager.Instance.Player.money);
 
         Events.ItemAdded += LoadPlayerInventory;
         Events.ShopUpdated += LoadNpcInventory;
+        Events.MoneyChanged += UpdateMoney;
     }
 
     public void Close()
@@ -41,6 +47,12 @@ public class ShopController : MonoBehaviour
         
         Events.ItemAdded -= LoadPlayerInventory;
         Events.ShopUpdated -= LoadNpcInventory;
+        Events.MoneyChanged -= UpdateMoney;
+    }
+    
+    public void UpdateMoney(int count)
+    {
+        moneyLabel.text = count.ToString();
     }
     
     public void LoadNpcInventory(ShopItems shop)

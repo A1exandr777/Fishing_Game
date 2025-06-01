@@ -37,7 +37,7 @@ public class FishingMinigame : MonoBehaviour
         
         fishIcon.sprite = fish.Icon;
         catchProgress = 0.5f;
-        fishPosition = 0.0f;
+        fishPosition = Random.value;
         
         StartCoroutine(RunMinigame());
     }
@@ -134,8 +134,8 @@ public class FishingMinigame : MonoBehaviour
     private void UpdateFishPosition()
     {
         // Fish moves based on its pattern
-        var movementPatternIntensity = 0.1f; // currentFish.movementPatternIntensity
-        var escapeSpeed = 0.1f; // currentFish.escapeSpeed
+        var movementPatternIntensity = 0.3f; // currentFish.movementPatternIntensity
+        var escapeSpeed = 0.2f; // currentFish.escapeSpeed
         var movementFactor = movementPatternIntensity;
         fishPosition += Random.Range(-0.01f, 0.01f) * movementFactor;
         fishPosition += 0.01f * fishMovementDirection * escapeSpeed;

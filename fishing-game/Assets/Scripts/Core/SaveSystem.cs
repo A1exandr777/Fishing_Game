@@ -59,6 +59,8 @@ public class SaveData
     public float[] playerPosition;
     public Dictionary<string, int> caughtFish;
     public int playerMoney;
+
+    public float timeOfDay;
     
     // Player Data
     public InventoryData playerInventory;
@@ -76,6 +78,8 @@ public class SaveData
         caughtFish = GameManager.Instance.Player.caughtFish;
         
         playerMoney = GameManager.Instance.Player.money;
+
+        timeOfDay = DayCycleController.Instance.currentCyclePosition;
         
         // Save inventory
         playerInventory = new InventoryData(GameManager.Instance.Player.Inventory);
