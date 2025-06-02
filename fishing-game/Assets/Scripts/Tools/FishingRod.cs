@@ -3,12 +3,24 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
+
+public enum FishingState
+{
+    None,
+    Prepared,
+    Throwing,
+    Waiting,
+    Fishing,
+}
 
 public class FishingRod : ToolObject
 {
     [Header("References")]
     public Transform tip;
     public Transform hook;
+
+    public GameObject indicator;
 
     public Material lineMaterial;
     
@@ -19,14 +31,10 @@ public class FishingRod : ToolObject
     
     private LineRenderer lineRenderer;
     private Vector3[] linePositions;
-    private bool isCasting;
     private Vector3 targetPosition;
     private float castProgress;
 
     public Vector3 lastDirection;
-    
-    public bool isFishing;
-    public bool isThrowing;
 
     public float throwStrength;
 
@@ -34,9 +42,17 @@ public class FishingRod : ToolObject
     public float sinceLastTimeFishing;
     public float delay = 2f;
 
+    private float currentWait;
+    private float waitTime;
+    private bool canCatch;
+
+    private float timeWindow = 0.5f;
+
     public LootTable fishTable;
 
     public Item currentFish;
+
+    private FishingState currentState = FishingState.None;
 
 
     public override void Init()
@@ -57,14 +73,23 @@ public class FishingRod : ToolObject
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             OnDown();
-            UIController.Instance.fishingMinigame.StartReeling();
+            if (currentState == FishingState.Fishing)
+                UIController.Instance.fishingMinigame.StartReeling();
         }
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             OnUp();
-            UIController.Instance.fishingMinigame.StopReeling();
-            // UIController.Instance.throwMinigame.Release();
+            if (currentState == FishingState.Fishing)
+                UIController.Instance.fishingMinigame.StopReeling();
         }
+
+        if (currentState == FishingState.Waiting)
+        {
+            currentWait += Time.deltaTime;
+            canCatch = Mathf.Abs(currentWait - waitTime) <= timeWindow;   
+        }
+        
+        indicator.SetActive(canCatch);
         
         
         if (!canFish)
@@ -77,14 +102,13 @@ public class FishingRod : ToolObject
             }
         }
         
-        if (isCasting)
+        if (currentState == FishingState.Throwing)
         {
             castProgress += Time.deltaTime * castSpeed;
         
             if (castProgress >= 1f)
             {
-                isCasting = false;
-                // StartCoroutine(SplashEffect());
+                currentState = FishingState.Waiting;
             }
         
             UpdateLinePositions();
@@ -97,31 +121,26 @@ public class FishingRod : ToolObject
     
     private void UpdateLinePositions()
     {
-        // Первая точка - конец удочки
         linePositions[0] = tip.position;
-    
-        // Последняя точка - крючок
-        linePositions[lineSegments - 1] = isCasting ? 
+        
+        linePositions[lineSegments - 1] = currentState == FishingState.Throwing ? 
             Vector3.Lerp(tip.position, targetPosition, castProgress) : 
             hook.position;
         
-        hook.position = isCasting ? linePositions[lineSegments - 1] : targetPosition;
-    
-        // Промежуточные точки (симуляция провисания)
+        hook.position = currentState == FishingState.Throwing ? linePositions[lineSegments - 1] : targetPosition;
+        
         for (var i = 1; i < lineSegments - 1; i++)
         {
             var t = (float)i / (lineSegments - 1);
             var basePos = Vector3.Lerp(linePositions[0], linePositions[lineSegments - 1], t);
         
-            if (isCasting)
+            if (currentState == FishingState.Throwing)
             {
-                // Эффект дуги при забросе
                 var arcHeight = Mathf.Sin(t * Mathf.PI) * 2f;
                 linePositions[i] = basePos + Vector3.up * arcHeight;
             }
             else
             {
-                // Небольшое провисание в покое
                 var sag = Mathf.Sin(t * Mathf.PI) * lineTension;
                 linePositions[i] = basePos + Vector3.down * sag;
             }
@@ -137,7 +156,7 @@ public class FishingRod : ToolObject
         lineRenderer.enabled = false;
         hook.gameObject.SetActive(false);
         
-        isFishing = false;
+        currentState = FishingState.None;
         GameManager.Instance.Player.AnchorPlayer(false);
         
         if (success)
@@ -145,86 +164,66 @@ public class FishingRod : ToolObject
             GameManager.Instance.Player.Inventory.Add(currentFish, 1);
         }
     }
-    
-    // public void EndThrow(float strength)
-    // {
-    //     isFishing = true;
-    //
-    //     currentFish = ItemDatabase.GetRandomFish();
-    //     
-    //     UIController.Instance.fishingMinigame.StartMinigame(currentFish, strength, this);
-    // }
 
     public override void OnDown()
     {
         if (!canFish) return;
-        if (isFishing || isThrowing || isCasting) return;
-        
-        animator.Play("Prepare", -1, 0f);
 
-        lineRenderer.enabled = false;
-        hook.gameObject.SetActive(false);
-        
-        // var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
-        // var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");
-        // if (!waterTilemap) return;
-        //     
-        // var worldPos = CameraController.Instance.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
-        // var gridPos = waterTilemap.WorldToCell(worldPos);
-        // var waterTile = waterTilemap.GetTile(gridPos);
-        //
-        // targetPosition = new Vector3(worldPos.x, worldPos.y, hook.position.z);
-        
-        if (isFishing || isThrowing) return;
-        GameManager.Instance.Player.AnchorPlayer(true);
-        UIController.Instance.throwMinigame.StartMinigame(this);
-        
-        // if (waterTile)
-        // {
-        //     // GameManager.Instance.FishingController.StartFishing(this);
-        // }
+        switch (currentState)
+        {
+            case FishingState.None:
+                currentState = FishingState.Prepared;
+                animator.Play("Prepare", -1, 0f);
+                GameManager.Instance.Player.AnchorPlayer(true);
+                UIController.Instance.throwMinigame.StartMinigame(this);
+                break;
+            case FishingState.Waiting:
+                if (!canCatch)
+                {
+                    EndFishing(false);
+                    return;
+                }
+
+                currentState = FishingState.Fishing;
+                UIController.Instance.fishingMinigame.StartMinigame(currentFish, throwStrength, this);
+                
+                break;
+        }
     }
 
     public override void OnUp()
     {
         if (!canFish) return;
-        if (isFishing || isThrowing || isCasting) return;
-        
-        animator.Play("Throw", -1, 0f);
 
-        var strength = UIController.Instance.throwMinigame.StopAndGetResults();
-        
-        targetPosition = GameManager.Instance.Player.transform.position + lastDirection * (5 * Mathf.Max(strength, 0.2f));
-        
-        var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
-        var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");
-        if (!waterTilemap)
+        switch (currentState)
         {
-            EndFishing(false);
-            return;
-        };
-        
-        var gridPos = waterTilemap.WorldToCell(targetPosition);
-        var waterTile = waterTilemap.GetTile(gridPos);
-
-        if (!waterTile)
-        {
-            EndFishing(false);
-            return;
-        };
-        
-        isFishing = true;
-        // currentFish = ItemDatabase.GetRandomFish();
-        currentFish = fishTable.GetRandomItem();
-        
-        UIController.Instance.fishingMinigame.StartMinigame(currentFish, strength, this);
-    
-        // targetPosition = target;
-        castProgress = 0f;
-        isCasting = true;
-        lineRenderer.enabled = true;
-        hook.position = targetPosition;
-        hook.gameObject.SetActive(true);
+            case FishingState.Prepared:
+                currentState = FishingState.Throwing;
+                animator.Play("Throw", -1, 0f);
+                throwStrength = UIController.Instance.throwMinigame.StopAndGetResults();
+                targetPosition = GameManager.Instance.Player.transform.position + lastDirection * (5 * Mathf.Max(throwStrength, 0.2f));
+                
+                var allTilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+                var waterTilemap = allTilemaps.FirstOrDefault(tilemap => tilemap.name == "Water");
+                var gridPos = waterTilemap.WorldToCell(targetPosition);
+                var waterTile = waterTilemap.GetTile(gridPos);
+                if (!waterTile)
+                {
+                    EndFishing(false);
+                    return;
+                };
+                
+                currentFish = fishTable.GetRandomItem();
+                currentWait = 0f;
+                waitTime = Random.Range(2f, 10f);
+                Debug.Log(waitTime);
+                
+                castProgress = 0f;
+                lineRenderer.enabled = true;
+                hook.position = targetPosition;
+                hook.gameObject.SetActive(true);
+                break;
+        }
     }
     
     public override void UpdateDirection(Vector2 direction)

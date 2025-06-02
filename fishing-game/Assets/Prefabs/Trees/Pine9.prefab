@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8253278912771500187}
   - component: {fileID: 5628402463516199574}
+  - component: {fileID: -2509996601815463923}
   m_Layer: 0
   m_Name: Pine9
   m_TagString: Untagged
@@ -87,3 +88,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &-2509996601815463923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458587981219688501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a9ddb6aa7d4b146a22dea4d00d6e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swayAmount: 4
+  swaySpeed: 1

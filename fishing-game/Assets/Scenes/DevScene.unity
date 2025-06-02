@@ -7621,7 +7621,7 @@ MonoBehaviour:
   anchored: 0
   moving: 0
   health: 0
-  money: 150
+  money: 0
 --- !u!114 &5269400284213749235
 MonoBehaviour:
   m_ObjectHideFlags: 0

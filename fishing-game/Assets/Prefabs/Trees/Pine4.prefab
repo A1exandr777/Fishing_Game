@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1844467841147834148}
   - component: {fileID: 6894167527987283183}
   - component: {fileID: 9059875284943852487}
+  - component: {fileID: -8378163476885425507}
   m_Layer: 0
   m_Name: Pine4
   m_TagString: Untagged
@@ -134,3 +135,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6863651, y: 0.7855339}
   m_EdgeRadius: 0
+--- !u!114 &-8378163476885425507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6261641634838052217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a9ddb6aa7d4b146a22dea4d00d6e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swayAmount: 4
+  swaySpeed: 1
